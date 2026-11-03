@@ -129,6 +129,10 @@
       .chat-sidebar { display:none; }
       .form-row { grid-template-columns:1fr; }
       .nav-btn:not(.primary):not(.outline) { display:none; }
+      #btnLogout, #btnStudy { display:inline-flex !important; }
+      .nav-right { flex-wrap:wrap; justify-content:flex-end; }
+      .navbar { gap:8px; padding:0.65rem; }
+      .logo { font-size:0.92rem; }
     }
     @media print {
       .navbar, .disclaimer-bar, footer, .no-print, .tabs { display:none !important; }
@@ -154,8 +158,9 @@
       <button class="nav-btn primary" id="btnSignup" onclick="showPage('signup')">Doctor Sign Up</button>
       <button class="nav-btn primary hidden" id="btnConsult" onclick="showPage('consult')">AI Consult</button>
       <button class="nav-btn hidden" id="btnDash" onclick="showPage('dashboard')">Dashboard</button>
+      <a class="nav-btn outline" id="btnStudy" href="homeocare-study-library.html" target="_blank" rel="noopener">📚 Study Library</a>
       <div id="navAvatar" class="hidden" onclick="showPage('dashboard')"></div>
-      <button class="nav-btn hidden" id="btnLogout" onclick="logout()">Logout</button>
+      <button class="nav-btn outline hidden" id="btnLogout" onclick="logout()">Logout</button>
     </div>
   </nav>
 
@@ -449,39 +454,20 @@
       console.error("Firebase init error", e);
     }
 
-    function withTimeout(promise, ms, label) {
-      let timer;
-      return Promise.race([
-        promise,
-        new Promise((_, reject) => { timer = setTimeout(() => reject(new Error(label + ' timed out. Check internet and Firebase settings.')), ms); })
-      ]).finally(() => clearTimeout(timer));
-    }
-
     function init() {
       document.getElementById('rxDate').textContent = new Date().toLocaleDateString('en-IN');
       if (firebaseReady) {
         auth.onAuthStateChanged(async (user) => {
-          if (!user) {
-            currentUser = null;
-            patients = []; prescriptions = [];
-            updateUIForUser();
-            return;
-          }
-          try {
-            const snap = await withTimeout(db.collection('doctors').doc(user.uid).get(), 12000, 'Doctor profile read');
-            if (snap.exists) {
-              currentUser = { uid: user.uid, ...snap.data() };
-              await withTimeout(loadCloudData(), 12000, 'Patient data read');
+          if (user) {
+            const doc = await db.collection('doctors').doc(user.uid).get();
+            if (doc.exists) {
+              currentUser = { uid: user.uid, ...doc.data() };
+              await loadCloudData();
               updateUIForUser();
             }
-          } catch (err) {
-            console.error('Auth state/profile load error:', err);
-            const status = document.getElementById('loginStatus');
-            if (status) {
-              status.className = 'status-bar error';
-              status.classList.remove('hidden');
-              status.textContent = 'Firebase profile load failed: ' + (err.message || err);
-            }
+          } else {
+            currentUser = null;
+            updateUIForUser();
           }
         });
       } else {
@@ -656,29 +642,11 @@
 
       try {
         if (firebaseReady) {
-          status.textContent = 'Connecting to Firebase Authentication…';
-          const cred = await withTimeout(auth.signInWithEmailAndPassword(email, pass), 15000, 'Firebase sign-in');
-          status.textContent = 'Login successful. Loading doctor profile…';
-          const ref = db.collection('doctors').doc(cred.user.uid);
-          let snap = await withTimeout(ref.get(), 12000, 'Doctor profile read');
-
-          // Existing Auth account with a missing profile: try creating a minimal profile.
-          if (!snap.exists) {
-            status.textContent = 'Doctor profile missing. Creating a basic profile…';
-            const basicProfile = {
-              name: cred.user.displayName || (email.split('@')[0] || 'Doctor'),
-              email: cred.user.email || email,
-              mobile: '', regNo: '', qualification: 'BHMS', clinic: '', city: '',
-              photo: null, plan: 'trial', trialStart: new Date().toISOString(),
-              consults: 0, createdAt: new Date().toISOString(), profileRecovered: true
-            };
-            await withTimeout(ref.set(basicProfile), 12000, 'Doctor profile save');
-            snap = await withTimeout(ref.get(), 12000, 'Doctor profile confirmation');
-            if (!snap.exists) throw new Error('Profile was not created. Check Firestore Rules.');
-          }
-          currentUser = { uid: cred.user.uid, ...snap.data() };
-          status.textContent = 'Loading your patient and prescription records…';
-          await withTimeout(loadCloudData(), 15000, 'Patient/prescription data read');
+          const cred = await auth.signInWithEmailAndPassword(email, pass);
+          const doc = await db.collection('doctors').doc(cred.user.uid).get();
+          if (!doc.exists) throw new Error('Profile not found');
+          currentUser = { uid: cred.user.uid, ...doc.data() };
+          await loadCloudData();
         } else {
           const saved = localStorage.getItem('hc_user');
           if (!saved) throw new Error('No account found');
@@ -691,24 +659,18 @@
         updateUIForUser();
         showPage('dashboard');
       } catch (err) {
-        console.error('Login failed:', err);
         status.className = 'status-bar error';
-        status.classList.remove('hidden');
-        const code = err.code || '';
-        let message = err.message || String(err);
-        if (code === 'auth/invalid-credential' || code === 'auth/wrong-password' || code === 'auth/user-not-found') message = 'Email या password सही नहीं है।';
-        else if (code === 'auth/too-many-requests') message = 'कई बार कोशिश हुई है। थोड़ी देर बाद फिर प्रयास करें।';
-        else if (code === 'permission-denied' || message.toLowerCase().includes('permission')) message = 'Firestore Rules ने access रोका है। Rules ठीक करनी होंगी।';
-        else if (message.toLowerCase().includes('timed out')) message = 'Firebase से जवाब समय पर नहीं आया। इंटरनेट और Firebase project जाँचें; यह local content:// file से भी हो सकता है।';
-        status.textContent = 'Login failed: ' + message;
+        status.textContent = 'Error: ' + (err.message || err);
       }
       btn.disabled = false; btn.textContent = 'Login';
     }
 
     async function logout() {
-      if (firebaseReady) await auth.signOut();
+      try { if (firebaseReady && auth) await auth.signOut(); }
+      catch (err) { console.error('Firebase sign-out error:', err); }
       currentUser = null;
       patients = []; prescriptions = [];
+      localStorage.removeItem('hc_currentUser');
       updateUIForUser();
       showPage('home');
     }
@@ -919,4 +881,4 @@
     }
   </script>
 </body>
-</html>
+  </html>
