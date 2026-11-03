@@ -1,497 +1,119 @@
+<section id="rep" class="hidden">
+  <div class="panel">
+    <h2>📚 Phatak Repertory Study</h2>
+    <p>
+      Based on the alphabetical study approach of
+      Dr. S. R. Phatak's Concise Repertory.
+      Educational reference only.
+    </p>
 
-<!doctype html>
-<html lang="hi">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0f766e">
-<title>HomeoCare Pro Study Library</title>
-
-<style>
-:root {
-  --p: #0f766e;
-  --bg: #f1f5f9;
-  --line: #dbe4ea;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: #142235;
-  font: 16px/1.55 system-ui, "Noto Sans Devanagari", sans-serif;
-}
-header {
-  background: linear-gradient(120deg, #0f766e, #14b8a6);
-  color: white;
-  padding: 20px;
-}
-main {
-  max-width: 980px;
-  margin: auto;
-  padding: 14px;
-}
-.warn, .panel, .item {
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 14px;
-  margin: 10px 0;
-}
-.warn {
-  background: #fff7e6;
-  border-color: #f1d28c;
-}
-.tabs, .controls {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin: 12px 0;
-}
-.tabs button, button, input, select {
-  font: inherit;
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  background: white;
-}
-.tabs button.active, .primary {
-  background: var(--p);
-  color: white;
-}
-.controls input {
-  flex: 1;
-  min-width: 180px;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 10px;
-}
-.item h3 {
-  margin: 0;
-  color: var(--p);
-  font-size: 1rem;
-}
-.item small { color: #64748b; }
-.hidden { display: none !important; }
-.answer {
-  display: block;
-  width: 100%;
-  text-align: left;
-  margin: 6px 0;
-}
-.feedback {
-  background: #eaf7f2;
-  padding: 10px;
-  border-radius: 8px;
-}
-footer {
-  text-align: center;
-  color: #64748b;
-  padding: 20px;
-}
-</style>
-</head>
-
-<body>
-<header>
-  <h1>🌿 HomeoCare Pro — Study Library</h1>
-  Materia Medica • Repertory • Biochemic • Pharmacy • Disease Study • Quiz
-</header>
-
-<main>
-  <div class="warn">
-    <b>शैक्षणिक उपयोग:</b> यह study aid है, diagnosis या prescription नहीं।
-    Materia Medica और Repertory की जानकारी अपने मान्य textbook और edition से verify करें।
-    Emergency या red-flag symptoms में appropriate medical care/referral जरूरी है।
-  </div>
-
-  <div class="tabs">
-    <button class="active" data-id="rem">100 Medicines</button>
-    <button data-id="bio">20 Biochemic</button>
-    <button data-id="rep">Repertory</button>
-    <button data-id="mat">Materia Medica</button>
-    <button data-id="pharm">Pharmacy</button>
-    <button data-id="dose">Doses & Potency</button>
-    <button data-id="dis">Diseases</button>
-    <button data-id="quiz">Quiz</button>
-  </div>
-
-  <div class="controls">
-    <input id="search" placeholder="Search medicine/topic…">
-    <select id="filter">
-      <option value="all">All types</option>
-      <option value="Plant">Plant</option>
-      <option value="Mineral">Mineral</option>
-      <option value="Animal">Animal</option>
-      <option value="Nosode">Nosode</option>
-      <option value="Biochemic">Biochemic</option>
-      <option value="Fungus">Fungus</option>
-      <option value="Chemical">Chemical</option>
-    </select>
-  </div>
-
-  <section id="rem">
-    <div class="panel">
-      <h2>100 Commonly Studied Remedies</h2>
-      इन्हें index की तरह उपयोग करें। Source, characteristic symptoms,
-      modalities, concomitants, relationships और limitations trusted text से पढ़ें।
+    <div class="controls">
+      <input id="rubricSearch"
+        placeholder="Search rubric: abdomen, pain, cough...">
+      <select id="rubricGroup">
+        <option value="all">All categories</option>
+        <option value="Mind">Mind</option>
+        <option value="General">General</option>
+        <option value="Modalities">Modalities</option>
+        <option value="Particular">Particular</option>
+      </select>
     </div>
-    <div class="grid" id="rg"></div>
-  </section>
 
-  <section id="bio" class="hidden">
-    <div class="panel">
-      <h2>20 Biochemic Salts</h2>
-      Educational index only. Claims और evidence limitations verify करें।
-    </div>
-    <div class="grid" id="bg"></div>
-  </section>
+    <div id="rubricResults" class="grid"></div>
+  </div>
 
-  <section id="rep" class="hidden panel">
-    <h2>Repertory Study Workflow</h2>
+  <div class="panel">
+    <h2>📝 Repertory Study Method</h2>
     <ol>
-      <li>Patient के exact words, onset, location, sensation, modalities,
-        concomitants और general symptoms record करें।</li>
-      <li>Repertory में exact rubric wording खोजें और chapter, grade तथा edition note करें।</li>
-      <li>Characteristic rubrics सोच-समझकर select करें; common symptoms को
-        जरूरत से ज्यादा weight न दें।</li>
-      <li>Materia Medica में candidates compare करें और source/uncertainty document करें।</li>
+      <li>Record the patient's exact symptom language.</li>
+      <li>Identify location, sensation, modalities and concomitants.</li>
+      <li>Search the exact rubric in the selected book edition.</li>
+      <li>Verify rubric wording, remedy abbreviations and grades.</li>
+      <li>Compare candidates in Materia Medica and document uncertainty.</li>
     </ol>
-  </section>
+  </div>
 
-  <section id="mat" class="hidden panel">
-    <h2>Materia Medica Reading Template</h2>
-    हर remedy के लिए record करें:
-    <ul>
-      <li>Source / name</li>
-      <li>Preparation</li>
-      <li>Characteristic mental, general और local symptoms</li>
-      <li>Modalities और concomitants</li>
-      <li>Relationships और differential comparison</li>
-      <li>Clinical limitations और textbook citation</li>
-    </ul>
-  </section>
-
-  <section id="pharm" class="hidden panel">
-    <h2>Homoeopathic Pharmacy Syllabus</h2>
-    <div class="grid">
-      <article class="item">
-        <h3>Sources</h3>
-        Vegetable, animal, mineral, chemical, nosode और sarcode;
-        identity तथा quality control.
-      </article>
-      <article class="item">
-        <h3>Preparations</h3>
-        Mother tinctures, solutions, triturations, dilutions और
-        potentisation concepts per pharmacopoeia.
-      </article>
-      <article class="item">
-        <h3>Scales</h3>
-        Decimal X/D, centesimal C/CH और millesimal LM/Q;
-        notation तथा official preparation methods compare करें।
-      </article>
-      <article class="item">
-        <h3>Quality & Safety</h3>
-        Authentication, contamination, labeling, storage, batch records,
-        pharmacopoeial standards और adverse-event reporting.
-      </article>
-    </div>
-  </section>
-
-  <section id="dose" class="hidden panel">
-    <h2>Doses & Potency — Educational Reference</h2>
-    कोई universal dose/potency rule हर condition या patient पर लागू नहीं होता।
-    Selected authoritative text, pharmacopoeia, edition और context record करें।
-    Preparation, scale और dosage form में अंतर समझें।
-    Safety को high dilution से assume न करें और effective care delay न करें।
-  </section>
-
-  <section id="dis" class="hidden panel">
-    <h2>Disease Study Template</h2>
-    <ul>
-      <li>Definition</li>
-      <li>Causes और risk factors</li>
-      <li>Pathophysiology</li>
-      <li>Presentation और differential diagnosis</li>
-      <li>Investigations</li>
-      <li>Evidence-based standard care</li>
-      <li>Complications, red flags और referral pathway</li>
-      <li>Literature और evidence limitations</li>
-    </ul>
-
-    <div class="warn">
-      <b>Urgent red flags:</b> Severe breathing difficulty, chest pain,
-      altered consciousness, stroke signs, uncontrolled bleeding, seizures,
-      severe dehydration या rapidly worsening symptoms में urgent medical
-      assessment जरूरी है।
-    </div>
-  </section>
-
-  <section id="quiz" class="hidden panel">
-    <h2>Revision Quiz</h2>
-    <div id="qbox"></div>
-    <button class="primary" id="next">Next Question</button>
-    <p id="score"></p>
-  </section>
-</main>
-
-<footer>
-  HomeoCare Pro • Single-file offline study aid
-</footer>
+  <div class="panel">
+    <h2>⚠️ Clinical Safety</h2>
+    <p>
+      This section is for educational study, not diagnosis or
+      treatment recommendations. Do not delay evidence-based care
+      or urgent referral for serious symptoms.
+    </p>
+  </div>
+</section>
 
 <script>
-const meds = `
-Aconitum napellus|Plant;
-Actaea racemosa|Plant;
-Aesculus hippocastanum|Plant;
-Aethusa cynapium|Plant;
-Agaricus muscarius|Fungus;
-Allium cepa|Plant;
-Aloe socotrina|Plant;
-Alumina|Mineral;
-Ambra grisea|Animal;
-Ammonium carbonicum|Mineral;
-Anacardium orientale|Plant;
-Antimonium crudum|Mineral;
-Antimonium tartaricum|Mineral;
-Apis mellifica|Animal;
-Argentum nitricum|Mineral;
-Arnica montana|Plant;
-Arsenicum album|Mineral;
-Arum triphyllum|Plant;
-Aurum metallicum|Mineral;
-Baptisia tinctoria|Plant;
-Baryta carbonica|Mineral;
-Belladonna|Plant;
-Bellis perennis|Plant;
-Berberis vulgaris|Plant;
-Borax|Mineral;
-Bovista|Fungus;
-Bryonia alba|Plant;
-Calcarea carbonica|Mineral;
-Calcarea fluorica|Biochemic;
-Calcarea phosphorica|Biochemic;
-Calcarea sulphurica|Biochemic;
-Calendula officinalis|Plant;
-Camphora|Plant;
-Cantharis|Animal;
-Capsicum annuum|Plant;
-Carbo vegetabilis|Plant;
-Caulophyllum thalictroides|Plant;
-Causticum|Chemical;
-Chamomilla|Plant;
-Chelidonium majus|Plant;
-China officinalis|Plant;
-Cicuta virosa|Plant;
-Cimicifuga racemosa|Plant;
-Cina|Plant;
-Cocculus indicus|Plant;
-Coccus cacti|Animal;
-Coffea cruda|Plant;
-Colchicum autumnale|Plant;
-Colocynthis|Plant;
-Conium maculatum|Plant;
-Cuprum metallicum|Mineral;
-Digitalis purpurea|Plant;
-Drosera rotundifolia|Plant;
-Dulcamara|Plant;
-Echinacea angustifolia|Plant;
-Eupatorium perfoliatum|Plant;
-Euphrasia officinalis|Plant;
-Ferrum metallicum|Mineral;
-Ferrum phosphoricum|Biochemic;
-Gelsemium sempervirens|Plant;
-Glonoinum|Chemical;
-Graphites|Mineral;
-Hepar sulphuris calcareum|Mineral;
-Hyoscyamus niger|Plant;
-Hypericum perforatum|Plant;
-Ignatia amara|Plant;
-Ipecacuanha|Plant;
-Kali bichromicum|Mineral;
-Kali carbonicum|Mineral;
-Kali phosphoricum|Biochemic;
-Kreosotum|Chemical;
-Lachesis mutus|Animal;
-Ledum palustre|Plant;
-Lilium tigrinum|Plant;
-Lobelia inflata|Plant;
-Lycopodium clavatum|Plant;
-Magnesia phosphorica|Biochemic;
-Medorrhinum|Nosode;
-Mercurius solubilis|Mineral;
-Natrum carbonicum|Mineral;
-Natrum muriaticum|Mineral;
-Natrum phosphoricum|Biochemic;
-Natrum sulphuricum|Biochemic;
-Nux moschata|Plant;
-Nux vomica|Plant;
-Phosphorus|Mineral;
-Phytolacca decandra|Plant;
-Pulsatilla pratensis|Plant;
-Rhus toxicodendron|Plant;
-Ruta graveolens|Plant;
-Sabadilla|Plant;
-Sanguinaria canadensis|Plant;
-Sepia officinalis|Animal;
-Silicea|Mineral;
-Spongia tosta|Animal;
-Staphysagria|Plant;
-Sulphur|Mineral;
-Thuja occidentalis|Plant;
-Veratrum album|Plant;
-Zincum metallicum|Mineral
-`.trim().split(";").map(x => x.trim().split("|"));
-
-const salts = `
-Calcarea fluorica|Calcium fluoride;
-Calcarea phosphorica|Calcium phosphate;
-Calcarea sulphurica|Calcium sulphate;
-Ferrum phosphoricum|Iron phosphate;
-Kali muriaticum|Potassium chloride;
-Kali phosphoricum|Potassium phosphate;
-Kali sulphuricum|Potassium sulphate;
-Magnesia phosphorica|Magnesium phosphate;
-Natrum muriaticum|Sodium chloride;
-Natrum phosphoricum|Sodium phosphate;
-Natrum sulphuricum|Sodium sulphate;
-Silicea|Silicon dioxide;
-Calcarea carbonica|Calcium carbonate;
-Kali arsenicosum|Potassium arsenite;
-Kali bromatum|Potassium bromide;
-Natrum carbonicum|Sodium carbonate;
-Natrum sulphuricum|Sodium sulphate;
-Arsenicum iodatum|Arsenic iodide;
-Cuprum arsenicosum|Copper arsenite;
-Manganum sulphuricum|Manganese sulphate
-`.trim().split(";").map(x => x.trim().split("|"));
-
-function makeCard(name, type, index) {
-  return `
-    <article class="item"
-      data-t="${type.toLowerCase()}"
-      data-s="${name.toLowerCase()} ${type.toLowerCase()}">
-      <h3>${index + 1}. ${name}</h3>
-      <small>${type}</small>
-      <p>
-        Study from selected reference: characteristic features, modalities,
-        concomitants, relationships and source citation.
-      </p>
-    </article>`;
-}
-
-document.getElementById("rg").innerHTML =
-  meds.map((x, i) => makeCard(x[0], x[1], i)).join("");
-
-document.getElementById("bg").innerHTML =
-  salts.map((x, i) => makeCard(x[0], x[1], i)).join("");
-
-document.querySelectorAll(".tabs button").forEach(button => {
-  button.onclick = () => {
-    document.querySelectorAll(".tabs button")
-      .forEach(item => item.classList.remove("active"));
-
-    button.classList.add("active");
-
-    ["rem", "bio", "rep", "mat", "pharm", "dose", "dis", "quiz"]
-      .forEach(id => {
-        document.getElementById(id)
-          .classList.toggle("hidden", id !== button.dataset.id);
-      });
-
-    document.getElementById("search").value = "";
-    filterCards();
-  };
-});
-
-function filterCards() {
-  const query = document.getElementById("search").value.toLowerCase();
-  const type = document.getElementById("filter").value.toLowerCase();
-
-  document.querySelectorAll("#rg .item, #bg .item").forEach(card => {
-    const matchesQuery = card.dataset.s.includes(query);
-    const matchesType = type === "all" || card.dataset.t.includes(type);
-
-    card.classList.toggle("hidden", !(matchesQuery && matchesType));
-  });
-}
-
-document.getElementById("search").oninput = filterCards;
-document.getElementById("filter").onchange = filterCards;
-
-const quiz = [
-  [
-    "Modalities का अर्थ?",
-    ["Better/worse करने वाले factors", "केवल रोग का नाम", "दवा की कीमत"],
-    0
-  ],
-  [
-    "Repertory candidates के बाद क्या करें?",
-    ["Materia Medica में verify/compare", "तुरंत prescribe", "Source छोड़ें"],
-    0
-  ],
-  [
-    "Centesimal notation कौन-सी है?",
-    ["C/CH", "X/D", "LM/Q"],
-    0
-  ],
-  [
-    "Disease study sheet में क्या होना चाहिए?",
-    ["Differential, investigations, standard care, red flags",
-     "केवल remedy list", "केवल symptoms"],
-    0
-  ],
-  [
-    "Citation क्यों रखें?",
-    ["Edition/rubric verify और traceability", "सजावट", "Follow-up छोड़ने के लिए"],
-    0
-  ]
+const studyRubrics = [
+  {
+    name: "Abdomen",
+    category: "Particular",
+    note: "Study location, sensation, aggravation, amelioration and associated symptoms."
+  },
+  {
+    name: "Cough",
+    category: "Particular",
+    note: "Record onset, character, timing, triggers and concomitant symptoms."
+  },
+  {
+    name: "Generals",
+    category: "General",
+    note: "Study symptoms affecting the person as a whole; verify exact rubric in the book."
+  },
+  {
+    name: "Modalities",
+    category: "Modalities",
+    note: "Factors that aggravate or ameliorate a symptom; record the patient's exact wording."
+  },
+  {
+    name: "Mind",
+    category: "Mind",
+    note: "Record observed or reported mental symptoms without making assumptions."
+  },
+  {
+    name: "Pain",
+    category: "Particular",
+    note: "Study location, sensation, extension, timing and modalities."
+  },
+  {
+    name: "Sleep",
+    category: "General",
+    note: "Record sleep pattern, position, disturbances and associated symptoms."
+  },
+  {
+    name: "Vertigo",
+    category: "Particular",
+    note: "Record sensation, circumstances, associated symptoms and safety concerns."
+  }
 ];
 
-let questionIndex = 0;
-let score = 0;
-let answered = false;
+const rubricResults = document.getElementById("rubricResults");
+const rubricSearch = document.getElementById("rubricSearch");
+const rubricGroup = document.getElementById("rubricGroup");
 
-function showQuestion() {
-  answered = false;
+function renderRubrics() {
+  const query = rubricSearch.value.trim().toLowerCase();
+  const group = rubricGroup.value;
 
-  const question = quiz[questionIndex % quiz.length];
+  const filtered = studyRubrics.filter(item =>
+    item.name.toLowerCase().includes(query) &&
+    (group === "all" || item.category === group)
+  );
 
-  document.getElementById("qbox").innerHTML =
-    `<b>${questionIndex + 1}. ${question[0]}</b>` +
-    question[1].map((answer, index) =>
-      `<button class="answer" data-index="${index}">
-        ${"ABC"[index]}. ${answer}
-      </button>`
-    ).join("") +
-    `<div id="feedback"></div>`;
-
-  document.querySelectorAll(".answer").forEach(button => {
-    button.onclick = () => {
-      if (answered) return;
-      answered = true;
-
-      const correct = Number(button.dataset.index) === question[2];
-      if (correct) score++;
-
-      document.getElementById("feedback").innerHTML =
-        `<div class="feedback">
-          ${correct ? "Correct!" : "Correct answer: " + question[1][question[2]]}
-        </div>`;
-
-      document.getElementById("score").textContent =
-        `Score: ${score}/${questionIndex + 1}`;
-    };
-  });
+  rubricResults.innerHTML = filtered.length
+    ? filtered.map(item => `
+        <article class="item">
+          <h3>${item.name}</h3>
+          <small>${item.category}</small>
+          <p>${item.note}</p>
+          <p><b>Book verification:</b> Check exact rubric, remedy abbreviations,
+          grade and page in your selected edition.</p>
+        </article>
+      `).join("")
+    : `<div class="item">No matching study topic found.</div>`;
 }
 
-document.getElementById("next").onclick = () => {
-  questionIndex++;
-  showQuestion();
-};
-
-showQuestion();
+rubricSearch.addEventListener("input", renderRubrics);
+rubricGroup.addEventListener("change", renderRubrics);
+renderRubrics();
 </script>
-</body>
-</html>
