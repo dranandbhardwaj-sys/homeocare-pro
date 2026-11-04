@@ -1,3 +1,4 @@
+<!-- ================= PHATAK REPERTORY SECTION ================= -->
 <section id="rep" class="hidden">
   <div class="panel">
     <h2>📚 Phatak Repertory Study</h2>
@@ -8,8 +9,7 @@
     </p>
 
     <div class="controls">
-      <input id="rubricSearch"
-        placeholder="Search rubric: abdomen, pain, cough...">
+      <input id="rubricSearch" placeholder="Search rubric: abdomen, pain, cough...">
       <select id="rubricGroup">
         <option value="all">All categories</option>
         <option value="Mind">Mind</option>
@@ -44,78 +44,52 @@
 </section>
 
 <script>
-const studyRubrics = [
-  {
-    name: "Abdomen",
-    category: "Particular",
-    note: "Study location, sensation, aggravation, amelioration and associated symptoms."
-  },
-  {
-    name: "Cough",
-    category: "Particular",
-    note: "Record onset, character, timing, triggers and concomitant symptoms."
-  },
-  {
-    name: "Generals",
-    category: "General",
-    note: "Study symptoms affecting the person as a whole; verify exact rubric in the book."
-  },
-  {
-    name: "Modalities",
-    category: "Modalities",
-    note: "Factors that aggravate or ameliorate a symptom; record the patient's exact wording."
-  },
-  {
-    name: "Mind",
-    category: "Mind",
-    note: "Record observed or reported mental symptoms without making assumptions."
-  },
-  {
-    name: "Pain",
-    category: "Particular",
-    note: "Study location, sensation, extension, timing and modalities."
-  },
-  {
-    name: "Sleep",
-    category: "General",
-    note: "Record sleep pattern, position, disturbances and associated symptoms."
-  },
-  {
-    name: "Vertigo",
-    category: "Particular",
-    note: "Record sensation, circumstances, associated symptoms and safety concerns."
+  const studyRubrics = [
+    { name: "Abdomen", category: "Particular", note: "Study location, sensation, aggravation, amelioration and associated symptoms." },
+    { name: "Cough", category: "Particular", note: "Record onset, character, timing, triggers and concomitant symptoms." },
+    { name: "Generals", category: "General", note: "Study symptoms affecting the person as a whole; verify exact rubric in the book." },
+    { name: "Modalities", category: "Modalities", note: "Factors that aggravate or ameliorate a symptom; record the patient's exact wording." },
+    { name: "Mind", category: "Mind", note: "Record observed or reported mental symptoms without making assumptions." },
+    { name: "Pain", category: "Particular", note: "Study location, sensation, extension, timing and modalities." },
+    { name: "Sleep", category: "General", note: "Record sleep pattern, position, disturbances and associated symptoms." },
+    { name: "Vertigo", category: "Particular", note: "Record sensation, circumstances, associated symptoms and safety concerns." }
+  ];
+
+  const rubricResults = document.getElementById("rubricResults");
+  const rubricSearch = document.getElementById("rubricSearch");
+  const rubricGroup = document.getElementById("rubricGroup");
+
+  function renderRubrics() {
+    const query = rubricSearch.value.trim().toLowerCase();
+    const group = rubricGroup.value;
+
+    const filtered = studyRubrics.filter(item =>
+      item.name.toLowerCase().includes(query) &&
+      (group === "all" || item.category === group)
+    );
+
+    rubricResults.innerHTML = filtered.length
+      ? filtered.map(item => `
+          <article class="item">
+            <h3>${item.name}</h3>
+            <small>${item.category}</small>
+            <p>${item.note}</p>
+            <p><b>Book verification:</b> Check exact rubric, remedy abbreviations, grade and page in your selected edition.</p>
+          </article>
+        `).join("")
+      : `<div class="item">No matching study topic found.</div>`;
   }
-];
 
-const rubricResults = document.getElementById("rubricResults");
-const rubricSearch = document.getElementById("rubricSearch");
-const rubricGroup = document.getElementById("rubricGroup");
+  if (rubricSearch && rubricGroup) {
+    rubricSearch.addEventListener("input", renderRubrics);
+    rubricGroup.addEventListener("change", renderRubrics);
+    renderRubrics();
+  }
+</script>
+<!-- ================= END OF PHATAK REPERTORY SECTION ================= -->
 
-function renderRubrics() {
-  const query = rubricSearch.value.trim().toLowerCase();
-  const group = rubricGroup.value;
 
-  const filtered = studyRubrics.filter(item =>
-    item.name.toLowerCase().includes(query) &&
-    (group === "all" || item.category === group)
-  );
-
-  rubricResults.innerHTML = filtered.length
-    ? filtered.map(item => `
-        <article class="item">
-          <h3>${item.name}</h3>
-          <small>${item.category}</small>
-          <p>${item.note}</p>
-          <p><b>Book verification:</b> Check exact rubric, remedy abbreviations,
-          grade and page in your selected edition.</p>
-        </article>
-      `).join("")
-    : `<div class="item">No matching study topic found.</div>`;
-}
-
-rubricSearch.addEventListener("input", renderRubrics);
-rubricGroup.addEventListener("change", renderRubrics);
-renderRubrics();<!-- ================= ALLEN'S KEYNOTES BOOK SECTION ================= -->
+<!-- ================= ALLEN'S KEYNOTES BOOK SECTION ================= -->
 
 <!-- Main Menu me Book Add karne ka Button -->
 <div style="padding: 15px;">
@@ -153,9 +127,8 @@ renderRubrics();<!-- ================= ALLEN'S KEYNOTES BOOK SECTION ===========
 
 </div>
 
-<!-- JavaScript Logic & Data -->
+<!-- JavaScript Logic & Data for Allen's Keynotes -->
 <script>
-    // Book ka Data
     const allenData = {
         'naja': `
             <h2 style="color: #0b7c68;">NAJA TRIPUDIANS</h2>
@@ -528,4 +501,3 @@ renderRubrics();<!-- ================= ALLEN'S KEYNOTES BOOK SECTION ===========
     }
 </script>
 <!-- ================= END OF ALLEN'S KEYNOTES SECTION ================= -->
-</script>
