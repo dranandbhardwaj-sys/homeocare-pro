@@ -13,7 +13,7 @@
     </div>
 
     <div id="allenMedicineList" style="padding: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-        <!-- (A to Z Buttons) -->
+        <!-- A to Z Buttons -->
         <button onclick="showAllenRemedy('acon')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Aconitum Napellus</button>
         <button onclick="showAllenRemedy('agar')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Agaricus Muscarius</button>
         <button onclick="showAllenRemedy('aloe')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Aloe Socotrina</button>
@@ -136,30 +136,9 @@
         <button onclick="backToAllenList()" style="margin-bottom: 15px; padding: 8px 15px; background: #0b7c68; color: white; border: none; border-radius: 5px;">← Back to List</button>
         <div id="allenTextContent"></div>
     </div>
-
 </div>
 
 <script>
-    const allenData = {
-        // (A to Z Data jo aapne bheja hai)...
-        'acon': `<h2 style="color: #0b7c68;">ACONITUM NAPELLUS</h2><p><b>Monkshood (Ranunculaceae)</b></p><h3>Mental Generals</h3><ul><li>Great fear and anxiety of mind, with great nervous excitability. Restlessness, cannot bear to be touched. Fear of death during pain. Predicts the day and hour of death.</li></ul><h3>Physical Generals</h3><ul><li>Sudden onset of complaints. Dry, burning heat. Thirst for cold water. Red, flushed face. Pulse full, hard, tense.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Evening and night; in a warm room; when lying on the affected side; from music; from dry cold winds.</li><li><b>Amelioration:</b> In the open air; from uncovering the head; from perspiration.</li></ul>`,
-        'agar': `<h2 style="color: #0b7c68;">AGARICUS MUSCARIUS</h2><p><b>Bug Agaric (Fungi)</b></p><h3>Mental Generals</h3><ul><li>Delirium tremens. Fear of death; believes he will die soon. Morbid sensitiveness. Singing, talking, cursing.</li></ul><h3>Physical Generals</h3><ul><li>Twitching and jerking of muscles. Myoclonic spasms. Sensation of coldness in various parts. Trembling. Spinal irritation.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Cold air; open air; after eating; touch; coition; pressure on spine.</li><li><b>Amelioration:</b> Slow motion; sitting bent.</li></ul>`,
-        'aloe': `<h2 style="color: #0b7c68;">ALOE SOCOTRINA</h2><p><b>Socotrine Aloes (Liliaceae)</b></p><h3>Mental Generals</h3><ul><li>Disinclination to mental labor. Feels every mental effort is a strain. Irritable, especially in morning.</li></ul><h3>Physical Generals</h3><ul><li>Diarrhea: involuntary, with flatus; pain in abdomen before stool. Prolapsus ani from stool. Craving for juicy fruits.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Morning; standing; after eating; warm weather; walking.</li><li><b>Amelioration:</b> Fresh air; cold applications; sitting.</li></ul>`,
-        'alum': `<h2 style="color: #0b7c68;">ALUMINA</h2><p><b>Oxide of Aluminum (Mineral)</b></p><h3>Mental Generals</h3><ul><li>Low-spirited, despondent. Confusion of mind; mistakes in writing or reading. Fears losing his reason. Suicidal thoughts.</li></ul><h3>Physical Generals</h3><ul><li>Constipation with no desire for stool. Dryness of skin and mucous membranes. Paralysis, especially of lower extremities. < from potatoes.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Morning on waking; warmth of bed; after eating; new moon.</li><li><b>Amelioration:</b> Open air; cold washing; warm food.</li></ul>`,
-        'am-c': `<h2 style="color: #0b7c68;">AMMONIUM CARBONICUM</h2><p><b>Carbonate of Ammonia (Mineral)</b></p><h3>Mental Generals</h3><ul><li>Weeping and moody. Aversion to being spoken to. Indifference. Anxiety in evening.</li></ul><h3>Physical Generals</h3><ul><li>Great tendency to take cold. Epistaxis (nosebleed) during menses. Hemorrhagic diathesis. Asthma with excessive dyspnea.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Cold weather; wet weather; evening; lying down; menstrual discharge.</li><li><b>Amelioration:</b> Open air; warm applications; sitting up.</li></ul>`,
-        'anac': `<h2 style="color: #0b7c68;">ANACARDIUM ORIENTALE</h2><p><b>Marking Nut (Anacardiaceae)</b></p><h3>Mental Generals</h3><ul><li>Two wills, one commands, the other obeys. Lacks self-confidence. Profane and malicious. Sudden loss of memory.</li></ul><h3>Physical Generals</h3><ul><li>Empty sensation in stomach, > by eating, but returns immediately. Diarrhea from exertion. Warts on palms.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Mental exertion; after eating; cold drafts; night.</li><li><b>Amelioration:</b> Eating (temporarily); warm applications.</li></ul>`,
-        'ant-c': `<h2 style="color: #0b7c68;">ANTIMONIUM CRUDUM</h2><p><b>Black Sulphide of Antimony</b></p><h3>Mental Generals</h3><ul><li>Sentimental mood. Weeps at the sight of others' suffering. Irritable if looked at.</li></ul><h3>Physical Generals</h3><ul><li>Thick, white coating on tongue (like milk). Digestive complaints from eating pork or bread. < from heat. Cracked corners of mouth.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Heat; warm bathing; evening; after eating; sweets.</li><li><b>Amelioration:</b> Open air; cold bathing; rest.</li></ul>`,
-        'ant-t': `<h2 style="color: #0b7c68;">ANTIMONIUM TARTARICUM</h2><p><b>Tartar Emetic (Mineral)</b></p><h3>Mental Generals</h3><ul><li>Drowsy, stupid, difficult to arouse. Child wants to be left alone.</li></ul><h3>Physical Generals</h3><ul><li>Cough with rattling of mucus in chest. Nausea and vomiting. Cold sweat on forehead. Face pale and cold.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Warm room; lying down; night; eating.</li><li><b>Amelioration:</b> Sitting up; expectoration; cold air.</li></ul>`,
-        'apis': `<h2 style="color: #0b7c68;">APIS MELLIFICA</h2><p><b>Honey Bee (Animal)</b></p><h3>Mental Generals</h3><ul><li>Jealousy. Apathy, indifference. Fretful, screaming, restless. Awkward, drops things.</li></ul><h3>Physical Generals</h3><ul><li>Stinging, burning pains. Edema (swelling) of parts. < from heat in any form. Thirstless.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Heat; touch; pressure; right side; after sleep.</li><li><b>Amelioration:</b> Cold applications; open air; motion.</li></ul>`,
-        'arg-n': `<h2 style="color: #0b7c68;">ARGENTUM NITRICUM</h2><p><b>Nitrate of Silver (Mineral)</b></p><h3>Mental Generals</h3><ul><li>Great apprehension and anxiety; impulsive. Fears he will lose his mind. Anticipatory anxiety (before exams/events).</li></ul><h3>Physical Generals</h3><ul><li>Flatulence, belching. Diarrhea from anxiety. Loss of voice from overuse. Craving for sweets.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Warmth; eating sweets; mental exertion; anticipation.</li><li><b>Amelioration:</b> Open air; cold drinks; eructations.</li></ul>`,
-        'arn': `<h2 style="color: #0b7c68;">ARNICA MONTANA</h2><p><b>Leopard's Bane (Compositae)</b></p><h3>Mental Generals</h3><ul><li>Says he is well when very sick. Fear of being touched or approached. Indifference to pain.</li></ul><h3>Physical Generals</h3><ul><li>Sore, lame, bruised feeling. Everything on which he lies feels hard. Tendency to hemorrhage after injury.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Motion; touch; lying on the affected part.</li><li><b>Amelioration:</b> Lying with head low; rest.</li></ul>`,
-        'ars': `<h2 style="color: #0b7c68;">ARSENICUM ALBUM</h2><p><b>Arsenious Acid (Mineral)</b></p><h3>Mental Generals</h3><ul><li>Great anguish and restlessness. Fear of death. Fastidious. Miserly.</li></ul><h3>Physical Generals</h3><ul><li>Burning pains, > by heat. Prostration. < at midnight. Thirst for small quantities of warm water. Cold sweat.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Cold; cold drinks; midnight; right side; after eating.</li><li><b>Amelioration:</b> Heat in any form; warm drinks; sitting up.</li></ul>`,
-        'aur': `<h2 style="color: #0b7c68;">AURUM METALLICUM</h2><p><b>Gold (Mineral)</b></p><h3>Mental Generals</h3><ul><li>Severe depression, suicidal tendency. Sinking sensation in stomach. Self-condemnation. Oversensitive to noise.</li></ul><h3>Physical Generals</h3><ul><li>Bone pains, especially at night. Syphilitic affections. Palpitation of heart. Hypertension.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Night; cold weather; mental exertion; emotional stress.</li><li><b>Amelioration:</b> Warmth; sleep.</li></ul>`,
-        'bapt': `<h2 style="color: #0b7c68;">BAPTISIA TINCTORIA</h2><p><b>Wild Indigo (Leguminosae)</b></p><h3>Mental Generals</h3><ul><li>Besotted look. Confusion, delirium. Thinks he is double, or scattered. Feels as if body is separated from soul.</li></ul><h3>Physical Generals</h3><ul><li>Typhoid fever. Offensive discharges. Great prostration. Foul breath. Muscles sore.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Movement; cold air; night; mental exertion.</li><li><b>Amelioration:</b> Open air; rest; sleep.</li></ul>`,
-        'bar-c': `<h2 style="color: #0b7c68;">BARYTA CARBONICA</h2><p><b>Carbonate of Baryta (Mineral)</b></p><h3>Mental Generals</h3><ul><li>Childish, dwarfish mentally and physically. Loss of memory. Shyness. Fear of strangers.</li></ul><h3>Physical Generals</h3><ul><li>Enlarged tonsils and glands. Offensive foot sweat. Premature senility. Stammering.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Thinking of symptoms; warm room; lying on left side; cold drafts.</li><li><b>Amelioration:</b> Open air; warm food; lying on right side.</li></ul>`,
-        'bell': `<h2 style="color: #0b7c68;">BELLADONNA</h2><p><b>Deadly Nightshade (Solanaceae)</b></p><h3>Mental Generals</h3><ul><li>Furious, vicious delirium. Sees monsters. Bites, strikes. Fear of imaginary things.</li></ul><h3>Physical Generals</h3><ul><li>Red, hot face. Throbbing headache. Dilated pupils. Burning heat of body. < from light, noise, jar.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Light; noise; touch; jar; lying down; after noon.</li><li><b>Amelioration:</b> Rest; sitting upright; warm room.</li></ul>`,
-        'bry': `<h2 style="color: #0b7c68;">BRYONIA ALBA</h2><p><b>Wild Hops (Cucurbitaceae)</b></p><h3>Mental Generals</h3><ul><li>Irritable, wants to be left alone. Talks of business. Anxiety about the future.</li></ul><h3>Physical Generals</h3><ul><li>Stitching, tearing pains. < from motion. Thirst for large quantities of water. Dry mucous membranes.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Motion; touch; exertion; warm room; eating.</li><li><b>Amelioration:</b> Rest; lying on painful side; pressure; cold drinks.</li></ul>`,
-        // ... (Aap saara <script>
     const allenData = {
         'acon': `<h2 style="color: #0b7c68;">ACONITUM NAPELLUS</h2><p><b>Monkshood (Ranunculaceae)</b></p><h3>Mental Generals</h3><ul><li>Great fear and anxiety of mind, with great nervous excitability. Restlessness, cannot bear to be touched. Fear of death during pain. Predicts the day and hour of death.</li></ul><h3>Physical Generals</h3><ul><li>Sudden onset of complaints. Dry, burning heat. Thirst for cold water. Red, flushed face. Pulse full, hard, tense.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Evening and night; in a warm room; when lying on the affected side; from music; from dry cold winds.</li><li><b>Amelioration:</b> In the open air; from uncovering the head; from perspiration.</li></ul>`,
         'agar': `<h2 style="color: #0b7c68;">AGARICUS MUSCARIUS</h2><p><b>Bug Agaric (Fungi)</b></p><h3>Mental Generals</h3><ul><li>Delirium tremens. Fear of death; believes he will die soon. Morbid sensitiveness. Singing, talking, cursing.</li></ul><h3>Physical Generals</h3><ul><li>Twitching and jerking of muscles. Myoclonic spasms. Sensation of coldness in various parts. Trembling. Spinal irritation.</li></ul><h3>Modalities</h3><ul><li><b>Aggravation:</b> Cold air; open air; after eating; touch; coition; pressure on spine.</li><li><b>Amelioration:</b> Slow motion; sitting bent.</li></ul>`,
@@ -300,7 +279,7 @@
         document.getElementById('allenContentArea').style.display = 'none';
         document.getElementById('allenMedicineList').style.display = 'grid';
     }
-
+</script>
 <!-- ================= END OF ALLEN'S KEYNOTES SECTION ================= -->
 
 
@@ -385,78 +364,58 @@
     }
 </script>
 <!-- ================= END OF PHATAK REPERTORY SECTION ================= -->
+
+
 <!-- ================= ORGANON APHORISMS SECTION ================= -->
 
-<!-- Main Menu me Organon Add karne ka Button -->
 <div style="padding: 15px;">
     <button onclick="openOrganon()" style="width: 100%; padding: 15px; background: #8e44ad; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
         📜 Organon Aphorisms (Quick Review)
     </button>
 </div>
 
-<!-- Organon Padhne Ka Section (Shuru me Chhupa Hua) -->
 <div id="organonContainer" style="display: none; background: #f8f9fa; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 3000; overflow-y: auto;">
-    
-    <!-- Top Bar -->
     <div style="background: #8e44ad; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 3001;">
         <h2 style="margin: 0; font-size: 18px;">Organon Aphorisms</h2>
         <button onclick="closeOrganon()" style="background: #d9534f; color: white; border: none; padding: 8px 15px; border-radius: 5px; font-weight: bold;">✖ Close</button>
     </div>
-
-    <!-- Search Bar -->
     <div style="padding: 15px;">
         <input type="text" id="orgSearch" onkeyup="filterOrganon()" placeholder="Search aphorism: 19, drug, dose, miasm..." style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; box-sizing: border-box;">
     </div>
-
-    <!-- Organon List Yahan Dikhegi -->
     <div id="organonList" style="padding: 0 15px 15px 15px; display: flex; flex-direction: column; gap: 10px;">
-        <!-- JavaScript yahan data bharega -->
     </div>
-
 </div>
 
-<!-- JavaScript Logic & Data for Organon -->
 <script>
     const organonData = [
-        // --- Knowledge of remedies & Law of similars ---
         { topic: "Law of Similars", aph: "19", desc: "How medicines cure" },
         { topic: "Law of Similars", aph: "20", desc: "Drug proving" },
         { topic: "Law of Similars", aph: "21", desc: "Pathogenetic symptoms Curative in medicine" },
         { topic: "Law of Similars", aph: "22", desc: "Contraria contrariibus curanter (Antipathy)" },
         { topic: "Law of Similars", aph: "23", desc: "Demerits of antipathy" },
         { topic: "Law of Similars", aph: "24", desc: "Only similia similibus curanter" },
-
-        // --- Homoeopathic law of cure ---
         { topic: "Homoeopathic Law of Cure", aph: "25", desc: "Merits of homoeopathy" },
         { topic: "Homoeopathic Law of Cure", aph: "26", desc: "Homoeopathic law of cure" },
         { topic: "Homoeopathic Law of Cure", aph: "27", desc: "Curative power of medicine- Symptoms similar of disease" },
         { topic: "Homoeopathic Law of Cure", aph: "28", desc: "Confirmation of law of nature" },
         { topic: "Homoeopathic Law of Cure", aph: "29", desc: "How homoeopathic cure takes place" },
-
-        // --- How medicines are stronger than natural disease ---
         { topic: "Medicine vs Natural Disease", aph: "30", desc: "Regulation of dose" },
         { topic: "Medicine vs Natural Disease", aph: "31", desc: "Medicine acts unconditionally" },
         { topic: "Medicine vs Natural Disease", aph: "32", desc: "Natural diseases affects Conditionally" },
         { topic: "Medicine vs Natural Disease", aph: "33", desc: "Medicines are superior than Natural diseases-cures" },
         { topic: "Medicine vs Natural Disease", aph: "34", desc: "Dis-similar diseases does not cure but similar diseases" },
-
-        // --- Law of dis-similar ---
         { topic: "Law of Dis-similar", aph: "35", desc: "What happens when two Dissimilar diseases meets together" },
         { topic: "Law of Dis-similar", aph: "36", desc: "Existing stronger repels the weaker" },
         { topic: "Law of Dis-similar", aph: "37", desc: "Allopathy-chronic disease remains uncured" },
         { topic: "Law of Dis-similar", aph: "38", desc: "New stronger suspends The weaker one" },
         { topic: "Law of Dis-similar", aph: "39", desc: "Routine examples" },
         { topic: "Law of Dis-similar", aph: "40", desc: "Complex diseases" },
-
-        // --- Appropriate dose & Aggravation ---
         { topic: "Dose & Aggravation", aph: "155", desc: "Appropriate dose" },
         { topic: "Dose & Aggravation", aph: "156", desc: "Homoeopathic agg. & potency" },
         { topic: "Dose & Aggravation", aph: "157", desc: "Homoeopathic agg. & Medicinal agg." },
         { topic: "Dose & Aggravation", aph: "158", desc: "Homoeopathic agg. In acute disease" },
         { topic: "Dose & Aggravation", aph: "159", desc: "Smaller the dose slightest the agg." },
         { topic: "Dose & Aggravation", aph: "160", desc: "Removal of symptoms without disturbance" },
-
-        // --- Remedy reaction ---
         { topic: "Remedy Reaction", aph: "161", desc: "Homo.- agg. In Acute & chronic disease" },
         { topic: "Remedy Reaction", aph: "162", desc: "Partial selection of simillimum" },
         { topic: "Remedy Reaction", aph: "163", desc: "Appearance of accessory symptom" },
@@ -468,8 +427,6 @@
         { topic: "Remedy Reaction", aph: "169", desc: "Analogous medicines" },
         { topic: "Remedy Reaction", aph: "170", desc: "Follow up" },
         { topic: "Remedy Reaction", aph: "171", desc: "Use of antipsoric medicines" },
-
-        // --- One sided diseases ---
         { topic: "One Sided Diseases", aph: "172", desc: "One sided diseases & Imperfect selection of Simillimum" },
         { topic: "One Sided Diseases", aph: "173", desc: "Definition" },
         { topic: "One Sided Diseases", aph: "174", desc: "Classification" },
@@ -483,8 +440,6 @@
         { topic: "One Sided Diseases", aph: "182", desc: "Discovery of remedy" },
         { topic: "One Sided Diseases", aph: "183", desc: "What to do" },
         { topic: "One Sided Diseases", aph: "184", desc: "Continue as previous Till complete cure" },
-
-        // --- Local Maladies ---
         { topic: "Local Maladies", aph: "185", desc: "Definition of local Maladies" },
         { topic: "Local Maladies", aph: "186", desc: "Acute local maladies- external causes" },
         { topic: "Local Maladies", aph: "187", desc: "Chronic local maladies- internal cause" },
@@ -504,22 +459,16 @@
         { topic: "Local Maladies", aph: "201", desc: "Effect of late Treatment" },
         { topic: "Local Maladies", aph: "202", desc: "Local maladies allopathic treatment" },
         { topic: "Local Maladies", aph: "203", desc: "Local maladies & external application" },
-
-        // --- Chronic diseases ---
         { topic: "Chronic Diseases", aph: "204", desc: "Types of chronic diseases" },
         { topic: "Chronic Diseases", aph: "205", desc: "Chronic disease manifestation" },
         { topic: "Chronic Diseases", aph: "206", desc: "Determine the miasm & Treat accordingly" },
         { topic: "Chronic Diseases", aph: "207", desc: "Effect of treatment Taken till today" },
         { topic: "Chronic Diseases", aph: "208", desc: "Perception of obstacles" },
         { topic: "Chronic Diseases", aph: "209", desc: "Formation of the portrait of the disease" },
-
-        // --- Mental diseases ---
         { topic: "Mental Diseases", aph: "210", desc: "Mental one sided Diseases difficult To treat" },
         { topic: "Mental Diseases", aph: "211", desc: "Present characteristic symptom are helpful for selection of remedy" },
         { topic: "Mental Diseases", aph: "212", desc: "Each medicine brings change in state of mind & disposition" },
         { topic: "Mental Diseases", aph: "213", desc: "Selection of homo medicine in such diseases" },
-
-        // --- Homoeopathic Posology ---
         { topic: "Posology", aph: "245", desc: "Diet, regimen & Mode of employing Medicine" },
         { topic: "Posology", aph: "246", desc: "Mode of employing remedies in chronic disease" },
         { topic: "Posology", aph: "247", desc: "Repetition of the dose" },
@@ -534,15 +483,11 @@
         { topic: "Posology", aph: "256", desc: "Sign of wrong simillimum" },
         { topic: "Posology", aph: "257", desc: "Favorite remedy" },
         { topic: "Posology", aph: "258", desc: "Never be prejudised to Any remedy" },
-
-        // --- Diet & Regimen ---
         { topic: "Diet & Regimen", aph: "259", desc: "Diet & regimen during treatment" },
         { topic: "Diet & Regimen", aph: "260", desc: "Investigation of obstacle in cure" },
         { topic: "Diet & Regimen", aph: "261", desc: "Regimen in chronic diseases" },
         { topic: "Diet & Regimen", aph: "262", desc: "Diet in acute disease" },
         { topic: "Diet & Regimen", aph: "263", desc: "Allow desired diet to the patient" },
-
-        // --- Pharmacy ---
         { topic: "Pharmacy", aph: "264", desc: "Genuine unimpaired medicine" },
         { topic: "Pharmacy", aph: "265", desc: "Employment of correct medicine" },
         { topic: "Pharmacy", aph: "266", desc: "Medicines- vegetable & animal kingdom" },
@@ -552,8 +497,6 @@
         { topic: "Pharmacy", aph: "270", desc: "Methods of dynamization" },
         { topic: "Pharmacy", aph: "271", desc: "Physician- knowledge Of pharmacy" },
         { topic: "Pharmacy", aph: "272", desc: "Administration of remedy" },
-
-        // --- Miscellaneous / Dose / Mesmerism ---
         { topic: "Miscellaneous", aph: "273", desc: "Single or complex medicine" },
         { topic: "Miscellaneous", aph: "274", desc: "Advantage of use of single medicine" },
         { topic: "Miscellaneous", aph: "275", desc: "Large dose is injurious" },
@@ -574,7 +517,6 @@
         { topic: "Miscellaneous", aph: "291", desc: "Bath" }
     ];
 
-    // Render Function
     function renderOrganon(dataToRender = organonData) {
         const listContainer = document.getElementById('organonList');
         if (!listContainer) return;
@@ -595,7 +537,6 @@
         `).join('');
     }
 
-    // Open/Close Functions
     function openOrganon() {
         document.getElementById('organonContainer').style.display = 'block';
         document.getElementById('orgSearch').value = ''; 
@@ -606,7 +547,6 @@
         document.getElementById('organonContainer').style.display = 'none';
     }
 
-    // Filter Function
     function filterOrganon() {
         const query = document.getElementById('orgSearch').value.toLowerCase();
         const filteredData = organonData.filter(item => 
