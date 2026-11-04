@@ -10,15 +10,20 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="description" content="Professional Homoeopathy Platform for Doctors">
   <title>HomeoCare Pro</title>
+  
+  <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json">
+  
   <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2966/2966327.png">
   <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2966/2966327.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <!-- Firebase Compat SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  
   <style>
     :root {
       --primary: #0f766e; --primary-dark: #0d5c56; --primary-light: #14b8a6;
@@ -147,6 +152,7 @@
     <button id="installBtn" style="margin-left:0.8rem;background:white;color:#0f766e;border:none;padding:0.35rem 0.9rem;border-radius:8px;font-weight:600;cursor:pointer;font-family:inherit;">Install App</button>
     <button onclick="document.getElementById('installBanner').style.display='none'" style="margin-left:0.4rem;background:transparent;border:1px solid rgba(255,255,255,0.5);color:white;padding:0.3rem 0.6rem;border-radius:6px;cursor:pointer;font-size:0.8rem;">✕</button>
   </div>
+  
 <div class="disclaimer-bar">⚠️ Educational platform only • Not medical advice • AI is simulated</div>
 
   <nav class="navbar">
@@ -848,7 +854,6 @@
   </script>
 
   <script>
-    
   // PWA Install Prompt
   let deferredPrompt;
   window.addEventListener('beforeinstallprompt', (e) => {
@@ -871,14 +876,14 @@
     if (b) b.style.display = 'none';
   }
 
-    // PWA Service Worker
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js').then(reg => {
-          console.log('Service Worker registered', reg.scope);
-        }).catch(err => console.log('SW registration failed', err));
-      });
-    }
+  // PWA Service Worker Registration
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').then(reg => {
+        console.log('Service Worker registered', reg.scope);
+      }).catch(err => console.log('SW registration failed', err));
+    });
+  }
   </script>
 </body>
-  </html>
+          </html>
