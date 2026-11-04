@@ -1,7 +1,7 @@
 {
   "name": "HomeoCare Pro",
   "short_name": "HomeoCare",
-  "description": "Homeopathy study app with Allen's Keynotes, Repertory & Organon.",
+  "description": "Homeopathy study app with Allen's Keynotes, Repertory &amp; Organon.",
   "start_url": "/homeocare-pro/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -17,5 +17,6 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "lang": "en"
 }
