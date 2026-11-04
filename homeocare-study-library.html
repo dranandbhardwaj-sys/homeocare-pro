@@ -17,7 +17,194 @@
     </div>
 
     <!-- List of Medicines -->
-    <div id="allenMedicineList" style="padding: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+ <!-- A & B Remedies -->
+<button onclick="showAllenRemedy('acon')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Aconitum Napellus</button>
+<button onclick="showAllenRemedy('agar')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Agaricus Muscarius</button>
+<button onclick="showAllenRemedy('aloe')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Aloe Socotrina</button>
+<button onclick="showAllenRemedy('alum')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Alumina</button>
+<button onclick="showAllenRemedy('am-c')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Ammonium Carb</button>
+<button onclick="showAllenRemedy('anac')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Anacardium</button>
+<button onclick="showAllenRemedy('ant-c')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Antimonium Crudum</button>
+<button onclick="showAllenRemedy('ant-t')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Antimonium Tart</button>
+<button onclick="showAllenRemedy('apis')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Apis Mellifica</button>
+<button onclick="showAllenRemedy('arg-n')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Argentum Nitricum</button>
+<button onclick="showAllenRemedy('arn')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Arnica Montana</button>
+<button onclick="showAllenRemedy('ars')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Arsenicum Album</button>
+<button onclick="showAllenRemedy('aur')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Aurum Metallicum</button>
+<button onclick="showAllenRemedy('bapt')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Baptisia</button>
+<button onclick="showAllenRemedy('bar-c')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Baryta Carbonica</button>
+<button onclick="showAllenRemedy('bell')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Belladonna</button>
+<button onclick="showAllenRemedy('bry')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Bryonia Alba</button> ,'acon': `
+    <h2 style="color: #0b7c68;">ACONITUM NAPELLUS</h2>
+    <p><b>Monkshood (Ranunculaceae)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Great fear and anxiety of mind, with great nervous excitability. Restlessness, cannot bear to be touched. Fear of death during pain. Predicts the day and hour of death.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Sudden onset of complaints. Dry, burning heat. Thirst for cold water. Red, flushed face. Pulse full, hard, tense.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Evening and night; in a warm room; when lying on the affected side; from music; from dry cold winds.</li><li><b>Amelioration:</b> In the open air; from uncovering the head; from perspiration.</li></ul>
+`,
+'agar': `
+    <h2 style="color: #0b7c68;">AGARICUS MUSCARIUS</h2>
+    <p><b>Bug Agaric (Fungi)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Delirium tremens. Fear of death; believes he will die soon. Morbid sensitiveness. Singing, talking, cursing.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Twitching and jerking of muscles. Myoclonic spasms. Sensation of coldness in various parts. Trembling. Spinal irritation.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Cold air; open air; after eating; touch; coition; pressure on spine.</li><li><b>Amelioration:</b> Slow motion; sitting bent.</li></ul>
+`,
+'aloe': `
+    <h2 style="color: #0b7c68;">ALOE SOCOTRINA</h2>
+    <p><b>Socotrine Aloes (Liliaceae)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Disinclination to mental labor. Feels every mental effort is a strain. Irritable, especially in morning.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Diarrhea: involuntary, with flatus; pain in abdomen before stool. Prolapsus ani from stool. Craving for juicy fruits.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Morning; standing; after eating; warm weather; walking.</li><li><b>Amelioration:</b> Fresh air; cold applications; sitting.</li></ul>
+`,
+'alum': `
+    <h2 style="color: #0b7c68;">ALUMINA</h2>
+    <p><b>Oxide of Aluminum (Mineral)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Low-spirited, despondent. Confusion of mind; mistakes in writing or reading. Fears losing his reason. Suicidal thoughts.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Constipation with no desire for stool. Dryness of skin and mucous membranes. Paralysis, especially of lower extremities. < from potatoes.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Morning on waking; warmth of bed; after eating; new moon.</li><li><b>Amelioration:</b> Open air; cold washing; warm food.</li></ul>
+`,
+'am-c': `
+    <h2 style="color: #0b7c68;">AMMONIUM CARBONICUM</h2>
+    <p><b>Carbonate of Ammonia (Mineral)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Weeping and moody. Aversion to being spoken to. Indifference. Anxiety in evening.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Great tendency to take cold. Epistaxis (nosebleed) during menses. Hemorrhagic diathesis. Asthma with excessive dyspnea.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Cold weather; wet weather; evening; lying down; menstrual discharge.</li><li><b>Amelioration:</b> Open air; warm applications; sitting up.</li></ul>
+`,
+'anac': `
+    <h2 style="color: #0b7c68;">ANACARDIUM ORIENTALE</h2>
+    <p><b>Marking Nut (Anacardiaceae)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Two wills, one commands, the other obeys. Lacks self-confidence. Profane and malicious. Sudden loss of memory.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Empty sensation in stomach, > by eating, but returns immediately. Diarrhea from exertion. Warts on palms.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Mental exertion; after eating; cold drafts; night.</li><li><b>Amelioration:</b> Eating (temporarily); warm applications.</li></ul>
+`,
+'ant-c': `
+    <h2 style="color: #0b7c68;">ANTIMONIUM CRUDUM</h2>
+    <p><b>Black Sulphide of Antimony</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Sentimental mood. Weeps at the sight of others' suffering. Irritable if looked at.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Thick, white coating on tongue (like milk). Digestive complaints from eating pork or bread. < from heat. Cracked corners of mouth.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Heat; warm bathing; evening; after eating; sweets.</li><li><b>Amelioration:</b> Open air; cold bathing; rest.</li></ul>
+`,
+'ant-t': `
+    <h2 style="color: #0b7c68;">ANTIMONIUM TARTARICUM</h2>
+    <p><b>Tartar Emetic (Mineral)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Drowsy, stupid, difficult to arouse. Child wants to be left alone.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Cough with rattling of mucus in chest. Nausea and vomiting. Cold sweat on forehead. Face pale and cold.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Warm room; lying down; night; eating.</li><li><b>Amelioration:</b> Sitting up; expectoration; cold air.</li></ul>
+`,
+'apis': `
+    <h2 style="color: #0b7c68;">APIS MELLIFICA</h2>
+    <p><b>Honey Bee (Animal)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Jealousy. Apathy, indifference. Fretful, screaming, restless. Awkward, drops things.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Stinging, burning pains. Edema (swelling) of parts. < from heat in any form. Thirstless.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Heat; touch; pressure; right side; after sleep.</li><li><b>Amelioration:</b> Cold applications; open air; motion.</li></ul>
+`,
+'arg-n': `
+    <h2 style="color: #0b7c68;">ARGENTUM NITRICUM</h2>
+    <p><b>Nitrate of Silver (Mineral)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Great apprehension and anxiety; impulsive. Fears he will lose his mind. Anticipatory anxiety (before exams/events).</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Flatulence, belching. Diarrhea from anxiety. Loss of voice from overuse. Craving for sweets.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Warmth; eating sweets; mental exertion; anticipation.</li><li><b>Amelioration:</b> Open air; cold drinks; eructations.</li></ul>
+`,
+'arn': `
+    <h2 style="color: #0b7c68;">ARNICA MONTANA</h2>
+    <p><b>Leopard's Bane (Compositae)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Says he is well when very sick. Fear of being touched or approached. Indifference to pain.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Sore, lame, bruised feeling. Everything on which he lies feels hard. Tendency to hemorrhage after injury.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Motion; touch; lying on the affected part.</li><li><b>Amelioration:</b> Lying with head low; rest.</li></ul>
+`,
+'ars': `
+    <h2 style="color: #0b7c68;">ARSENICUM ALBUM</h2>
+    <p><b>Arsenious Acid (Mineral)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Great anguish and restlessness. Fear of death. Fastidious. Miserly.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Burning pains, > by heat. Prostration. < at midnight. Thirst for small quantities of warm water. Cold sweat.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Cold; cold drinks; midnight; right side; after eating.</li><li><b>Amelioration:</b> Heat in any form; warm drinks; sitting up.</li></ul>
+`,
+'aur': `
+    <h2 style="color: #0b7c68;">AURUM METALLICUM</h2>
+    <p><b>Gold (Mineral)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Severe depression, suicidal tendency. Sinking sensation in stomach. Self-condemnation. Oversensitive to noise.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Bone pains, especially at night. Syphilitic affections. Palpitation of heart. Hypertension.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Night; cold weather; mental exertion; emotional stress.</li><li><b>Amelioration:</b> Warmth; sleep.</li></ul>
+`,
+'bapt': `
+    <h2 style="color: #0b7c68;">BAPTISIA TINCTORIA</h2>
+    <p><b>Wild Indigo (Leguminosae)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Besotted look. Confusion, delirium. Thinks he is double, or scattered. Feels as if body is separated from soul.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Typhoid fever. Offensive discharges. Great prostration. Foul breath. Muscles sore.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Movement; cold air; night; mental exertion.</li><li><b>Amelioration:</b> Open air; rest; sleep.</li></ul>
+`,
+'bar-c': `
+    <h2 style="color: #0b7c68;">BARYTA CARBONICA</h2>
+    <p><b>Carbonate of Baryta (Mineral)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Childish, dwarfish mentally and physically. Loss of memory. Shyness. Fear of strangers.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Enlarged tonsils and glands. Offensive foot sweat. Premature senility. Stammering.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Thinking of symptoms; warm room; lying on left side; cold drafts.</li><li><b>Amelioration:</b> Open air; warm food; lying on right side.</li></ul>
+`,
+'bell': `
+    <h2 style="color: #0b7c68;">BELLADONNA</h2>
+    <p><b>Deadly Nightshade (Solanaceae)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Furious, vicious delirium. Sees monsters. Bites, strikes. Fear of imaginary things.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Red, hot face. Throbbing headache. Dilated pupils. Burning heat of body. < from light, noise, jar.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Light; noise; touch; jar; lying down; after noon.</li><li><b>Amelioration:</b> Rest; sitting upright; warm room.</li></ul>
+`,
+'bry': `
+    <h2 style="color: #0b7c68;">BRYONIA ALBA</h2>
+    <p><b>Wild Hops (Cucurbitaceae)</b></p>
+    <h3>Mental Generals</h3>
+    <ul><li>Irritable, wants to be left alone. Talks of business. Anxiety about the future.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Stitching, tearing pains. < from motion. Thirst for large quantities of water. Dry mucous membranes.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Motion; touch; exertion; warm room; eating.</li><li><b>Amelioration:</b> Rest; lying on painful side; pressure; cold drinks.</li></ul>
+`
+// Yahan aage ka data aayega  <div id="allenMedicineList" style="padding: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
         <button onclick="showAllenRemedy('naja')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Naja Tripudians</button>
         <button onclick="showAllenRemedy('nat-c')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Natrum Carbonicum</button>
         <button onclick="showAllenRemedy('nat-m')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Natrum Muriaticum</button>
@@ -25,7 +212,70 @@
         <button onclick="showAllenRemedy('nit-ac')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Nitricum Acidum</button>
         <button onclick="showAllenRemedy('nux-m')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Nux Moschata</button>
         <button onclick="showAllenRemedy('nux-v')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Nux Vomica</button>
-        <button onclick="showAllenRemedy('opium')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Opium</button>
+        <button onclick="showAllenRemedy('opium')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Opium</button>,,'phos': `
+    <h2 style="color: #0b7c68;">PHOSPHORUS</h2>
+    <p><b>Phosphorus (Mineral)</b></p>
+    <h3>Constitution</h3>
+    <ul><li>Tall, slender, narrow-chested, sickly looking. Hemorrhagic tendency.</li></ul>
+    <h3>Mental Generals</h3>
+    <ul><li>Great anxiety and apprehension; easily startled. Sympathetic, wants company. < from mental exertion, evening.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Burning pains < by heat. < lying on left side. Craving for cold drinks, which are vomited as soon as warmed in the stomach. Bright red hemorrhages.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Touch, physical or mental exertion, lying on left side, evening.</li><li><b>Amelioration:</b> Cold food, cold air, lying on right side.</li></ul>
+`,
+'puls': `
+    <h2 style="color: #0b7c68;">PULSATILLA NIGRICANS</h2>
+    <p><b>Wind Flower (Ranunculaceae)</b></p>
+    <h3>Constitution</h3>
+    <ul><li>Mild, gentle, yielding disposition. Blonde, blue-eyed, fair complexion, tearful.</li></ul>
+    <h3>Mental Generals</h3>
+    <ul><li>Weeping tendency. Changeable mood, laughing and crying alternately. Jealousy. Likes sympathy.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Thirstless. Pains shift rapidly. Amenorrhea. Craving for fresh air. Thick, yellowish-green bland discharges.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Warm room, warm applications, rich fatty food, lying on left side.</li><li><b>Amelioration:</b> Open air, cold applications, gentle motion.</li></ul>
+`,
+'sulph': `
+    <h2 style="color: #0b7c68;">SULPHUR</h2>
+    <p><b>Sublimated Sulphur (Mineral)</b></p>
+    <h3>Constitution</h3>
+    <ul><li>Lean, stoop-shouldered, dirty, unhealthy skin.</li></ul>
+    <h3>Mental Generals</h3>
+    <ul><li>Selfish, philosophical, theorizer. Aversion to being washed.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Burning soles of feet at night; must stick them out of bed. Great desire for sweets and fats. Skin affections, itching < warmth of bed. Offensive discharges.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Standing, warmth of bed, washing, bathing, damp weather.</li><li><b>Amelioration:</b> Dry, warm weather, lying on right side.</li></ul>
+`,
+'thuj': `
+    <h2 style="color: #0b7c68;">THUJA OCCIDENTALIS</h2>
+    <p><b>Arbor Vitae (Coniferae)</b></p>
+    <h3>Constitution</h3>
+    <ul><li>Dark complexion, lymphatic temperament. Sycotic constitution.</li></ul>
+    <h3>Mental Generals</h3>
+    <ul><li>Fixed ideas; thinks he is made of glass. Delusions of being under the control of a superior power. Secretiveness.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Warts, condylomata, moles. Discharges thick, green, sweetish. Sweat only on uncovered parts. Craving for cold water.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Damp weather, cold air, 3 a.m., eating.</li><li><b>Amelioration:</b> Warmth, wrapping up, drawing up limbs.</li></ul>
+`,
+'sil': `
+    <h2 style="color: #0b7c68;">SILICEA TERRA</h2>
+    <p><b>Pure Flint (Mineral)</b></p>
+    <h3>Constitution</h3>
+    <ul><li>Pale, waxy, delicate skin. Lax muscles. Oversensitive to noise and impressions.</li></ul>
+    <h3>Mental Generals</h3>
+    <ul><li>Yielding, timid, lacking self-confidence. Fears pins, needles. Fixed ideas.</li></ul>
+    <h3>Physical Generals</h3>
+    <ul><li>Scrofulous constitution. Suppurations, fistulas. Offensive foot sweat. Colds settle in glands.</li></ul>
+    <h3>Modalities</h3>
+    <ul><li><b>Aggravation:</b> Cold, drafts, uncovering, new moon.</li><li><b>Amelioration:</b> Warmth, wrapping up, summer weather.</li></ul>
+`<button onclick="showAllenRemedy('phos')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Phosphorus</button>
+<button onclick="showAllenRemedy('puls')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Pulsatilla</button>
+<button onclick="showAllenRemedy('sulph')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Sulphur</button>
+<button onclick="showAllenRemedy('thuj')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Thuja Occidentalis</button>
+<button onclick="showAllenRemedy('sil')" style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: white; font-weight: bold; color: #0b7c68;">Silicea Terra</button>
     </div>
 
     <!-- Yahan Book Ka Text Dikhega -->
