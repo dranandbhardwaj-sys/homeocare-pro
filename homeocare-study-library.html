@@ -253,3 +253,108 @@
     }
 </script>
 <!-- ================= END OF ALLEN'S KEYNOTES SECTION ================= -->
+
+<!-- ================= PHATAK REPERTORY SECTION ================= -->
+
+<!-- Main Menu me Repertory Add karne ka Button -->
+<div style="padding: 15px;">
+    <button onclick="openRepertory()" style="width: 100%; padding: 15px; background: #2980b9; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        🔍 Phatak Repertory (Study)
+    </button>
+</div>
+
+<!-- Repertory Padhne Ka Section (Shuru me Chhupa Hua) -->
+<div id="repertoryContainer" style="display: none; background: #f8f9fa; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000; overflow-y: auto;">
+    
+    <!-- Top Bar -->
+    <div style="background: #2980b9; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 2001;">
+        <h2 style="margin: 0; font-size: 18px;">Phatak Repertory</h2>
+        <button onclick="closeRepertory()" style="background: #d9534f; color: white; border: none; padding: 8px 15px; border-radius: 5px; font-weight: bold;">✖ Close</button>
+    </div>
+
+    <!-- Search Bar -->
+    <div style="padding: 15px;">
+        <input type="text" id="repSearch" onkeyup="filterRepertory()" placeholder="Search rubric: headache, fever, fear..." style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; box-sizing: border-box;">
+    </div>
+
+    <!-- Repertory List Yahan Dikhegi -->
+    <div id="repertoryList" style="padding: 0 15px 15px 15px; display: flex; flex-direction: column; gap: 10px;">
+        <!-- JavaScript yahan data bharega -->
+    </div>
+
+</div>
+<!-- ================= END OF PHATAK REPERTORY SECTION ================= -->
+// ================= PHATAK REPERTORY DATA & LOGIC =================
+
+// Yahan aap aage aur rubrics add kar sakte hain
+const repertoryData = [
+    { cat: "Mind", rub: "Fear of death", rem: "Acon., Ars., Cact., Kali-ars." },
+    { cat: "Mind", rub: "Anger, easily offended", rem: "Cham., Nux-v., Staph., Bry." },
+    { cat: "Mind", rub: "Anxiety, restlessness", rem: "Acon., Ars., Rhus-t., Puls." },
+    { cat: "Mind", rub: "Weeping tendency", rem: "Puls., Ign., Nat-m., Sep." },
+    { cat: "Mind", rub: "Loss of memory", rem: "Lyc., Anac., Nux-m., Sulph." },
+    
+    { cat: "Head", rub: "Headache, bursting", rem: "Bell., Glon., Nat-m., Bry." },
+    { cat: "Head", rub: "Headache, throbbing", rem: "Bell., Glon., Sang." },
+    { cat: "Head", rub: "Headache, right side", rem: "Sang., Chel., Lyc." },
+    { cat: "Head", rub: "Headache, left side", rem: "Spig., Nat-m., Lach." },
+    
+    { cat: "Stomach", rub: "Nausea and vomiting", rem: "Ipec., Nux-v., Ars." },
+    { cat: "Stomach", rub: "Thirst, extreme", rem: "Bry., Ars., Phos." },
+    { cat: "Stomach", rub: "Thirstless", rem: "Puls., Apis., Gels." },
+    
+    { cat: "Abdomen", rub: "Colic, bending double >", rem: "Coloc., Dios., Mag-p." },
+    { cat: "Abdomen", rub: "Bloating, flatulence", rem: "Carb-v., Lyc., China." },
+    
+    { cat: "Extremities", rub: "Rheumatic pain, < motion", rem: "Bry." },
+    { cat: "Extremities", rub: "Rheumatic pain, > motion", rem: "Rhus-t." },
+    { cat: "Extremities", rub: "Cramps in calves", rem: "Cupr., Nux-v., Calc." },
+    
+    { cat: "Fever", rub: "Fever with cold sweat", rem: "Ars., Verat." },
+    { cat: "Fever", rub: "Fever with hot, dry skin", rem: "Acon., Bell." },
+    
+    { cat: "Skin", rub: "Burning and itching < warmth", rem: "Sulph., Mez." },
+    { cat: "Skin", rub: "Warts", rem: "Thuj., Caust., Nit-ac." }
+];
+
+// Repertory ko render karke dikhane ka function
+function renderRepertory(dataToRender = repertoryData) {
+    const listContainer = document.getElementById('repertoryList');
+    if (!listContainer) return;
+
+    if (dataToRender.length === 0) {
+        listContainer.innerHTML = `<p style="text-align: center; color: #666; margin-top: 20px;">No rubric found for your search.</p>`;
+        return;
+    }
+
+    listContainer.innerHTML = dataToRender.map(item => `
+        <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-left: 4px solid #2980b9;">
+            <span style="font-size: 12px; color: #2980b9; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">${item.cat}</span>
+            <h3 style="margin: 5px 0 10px 0; color: #333; font-size: 16px;">${item.rub}</h3>
+            <p style="margin: 0; font-size: 14px; color: #555;"><b>Remedies:</b> <span style="color: #0b7c68; font-weight: bold;">${item.rem}</span></p>
+        </div>
+    `).join('');
+}
+
+// Repertory Open/Close functions
+function openRepertory() {
+    document.getElementById('repertoryContainer').style.display = 'block';
+    document.getElementById('repSearch').value = ''; // Clear search
+    renderRepertory(); // Load all data initially
+}
+
+function closeRepertory() {
+    document.getElementById('repertoryContainer').style.display = 'none';
+}
+
+// Search filter function
+function filterRepertory() {
+    const query = document.getElementById('repSearch').value.toLowerCase();
+    const filteredData = repertoryData.filter(item => 
+        item.rub.toLowerCase().includes(query) || 
+        item.cat.toLowerCase().includes(query) || 
+        item.rem.toLowerCase().includes(query)
+    );
+    renderRepertory(filteredData);
+}
+// ================= END OF PHATAK REPERTORY LOGIC =================
